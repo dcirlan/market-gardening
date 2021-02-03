@@ -18,55 +18,56 @@ class UserFixtures extends Fixture
     
     public function load(ObjectManager $manager)
     {
-    // Création d’un utilisateur de type “contributeur” (= auteur)
+        // Création d’un utilisateur de type “contributeur” (= auteur)
 
-    $contributor = new User();
+        $contributor = new User();
 
-    $contributor->setEmail('contributor@monsite.com');
+        $contributor->setEmail('contributor@monsite.com');
 
-    $contributor->setFirstname('max');
+        $contributor->setFirstname('max');
 
-    $contributor->setSecondname('maxim');
+        $contributor->setSecondname('maxim');
 
-    $contributor->setRoles(['ROLE_CONTRIBUTOR']);
+        $contributor->setRoles(['ROLE_CONTRIBUTOR']);
 
-    $contributor->setPassword($this->passwordEncoder->encodePassword(
+        $contributor->setPassword($this->passwordEncoder->encodePassword(
 
-        $contributor,
+            $contributor,
 
-        'contributorpassword'
+            'contributorpassword'
 
-    ));
-
-
-    $manager->persist($contributor);
+        ));
 
 
-    // Création d’un utilisateur de type “administrateur”
-
-    $admin = new User();
-
-    $admin->setEmail('admin@monsite.com');
-
-    $admin->setFirstname('den');
-
-    $admin->setSecondname('denis');
-
-    $admin->setRoles(['ROLE_ADMIN']);
-
-    $admin->setPassword($this->passwordEncoder->encodePassword(
-
-        $admin,
-
-        'adminpassword'
-
-    ));
+        $manager->persist($contributor);
 
 
-    $manager->persist($admin);
+        // Création d’un utilisateur de type “administrateur”
+
+        $admin = new User();
+
+        $admin->setEmail('admin@monsite.com');
+
+        $admin->setFirstname('den');
+
+        $admin->setSecondname('denis');
+
+        $admin->setRoles(['ROLE_ADMIN']);
+
+        $admin->setPassword($this->passwordEncoder->encodePassword(
+
+            $admin,
+
+            'adminpassword'
+
+        ));
 
 
-    // Sauvegarde des 2 nouveaux utilisateurs :
+        $manager->persist($admin);
 
-    $manager->flush();    }
+
+        // Sauvegarde des 2 nouveaux utilisateurs :
+
+        $manager->flush();    
+    }
 }
