@@ -34,7 +34,7 @@ class UserFixtures extends Fixture
 
             $contributor,
 
-            'contributorpassword'
+            'contributor'
 
         ));
 
@@ -58,7 +58,7 @@ class UserFixtures extends Fixture
 
             $admin,
 
-            'adminpassword'
+            'admin'
 
         ));
 
