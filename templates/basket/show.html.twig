@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Basket{% endblock %}
+
+{% block body %}
+    <h1>Basket</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ basket.id }}</td>
+            </tr>
+            <tr>
+                <th>Creation_date</th>
+                <td>{{ basket.creationDate ? basket.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Pickup_date</th>
+                <td>{{ basket.pickupDate ? basket.pickupDate|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td>{{ basket.stock }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ basket.description }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('basket_index') }}">back to list</a>
+
+    <a href="{{ path('basket_edit', {'id': basket.id}) }}">edit</a>
+
+    {{ include('basket/_delete_form.html.twig') }}
+{% endblock %}

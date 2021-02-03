@@ -1,14 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Post index{% endblock %}
+{% block title %}Market Garden{% endblock %}
 
 {% block body %}
-    <h1>Post index</h1>
+    <h1>Bienvenue sur Market Garden</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Date</th>
                 <th>Title</th>
                 <th>Description</th>
@@ -18,7 +17,6 @@
         <tbody>
         {% for post in posts %}
             <tr>
-                <td>{{ post.id }}</td>
                 <td>{{ post.date ? post.date|date('Y-m-d') : '' }}</td>
                 <td>{{ post.title }}</td>
                 <td>{{ post.description }}</td>
@@ -41,7 +39,7 @@
         <i>Se connecter</i>
     </a>
 
-    {% if app.user %}
+    {% if is_granted('ROLE_ADMIN') %}
         <a href="{{ path('post_new') }}">Create new</a>
     {% endif %}
 {% endblock %}
