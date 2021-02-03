@@ -22,19 +22,16 @@ class BasketRepository extends ServiceEntityRepository
     // /**
     //  * @return Basket[] Returns an array of Basket objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    public function findLastBasket()
     {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('basket')
+            ->orderBy('basket.pickup_date', 'DESC')
+            ->setMaxResults(1)
             ->getQuery()
-            ->getResult()
+            ->getSingleResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Basket
@@ -47,4 +44,6 @@ class BasketRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 }

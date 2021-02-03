@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Repository\BasketRepository;
 use App\Repository\PostRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,5 +88,18 @@ class PostController extends AbstractController
         }
 
         return $this->redirectToRoute('post_index');
+    }
+
+
+    /**
+     * @Route("/post/basket/show", name="last_basket_show", methods={"GET"})
+     */
+    public function showLastBasket(BasketRepository $basketRepository)
+    {
+        $basket = $basketRepository->findLastBasket();
+
+        return $this->render('basket/lastBasket.html.twig', [
+            'basket' => $basket,
+        ]);
     }
 }
