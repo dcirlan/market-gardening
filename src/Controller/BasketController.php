@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Order;
 use App\Entity\Basket;
 use App\Form\BasketType;
+use App\Repository\OrderRepository;
 use App\Repository\BasketRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/basket")
@@ -51,10 +53,13 @@ class BasketController extends AbstractController
     /**
      * @Route("/{id}", name="basket_show", methods={"GET"})
      */
-    public function show(Basket $basket): Response
+    public function show(Basket $basket, $id, OrderRepository $orderRepository): Response
     {
+        $orders = $orderRepository->findBy(['basket' => $id]);
+
         return $this->render('basket/show.html.twig', [
             'basket' => $basket,
+            'orders' => $orders,
         ]);
     }
 
@@ -88,6 +93,31 @@ class BasketController extends AbstractController
             $entityManager->remove($basket);
             $entityManager->flush();
         }
+
+        return $this->redirectToRoute('basket_index');
+    }
+
+
+    /**
+     * @Route("/post/basket/reserve/{id}", name="basket_reserve")
+     */
+    public function reserved($id, BasketRepository $basketRepository)
+    {
+        $time = new \DateTime();
+
+
+        $order = new Order();
+
+        $user = $this->getUser();
+        $basket = $basketRepository->find($id);
+
+        $order->setQuantity('1');
+        $order->setUser($user);
+        $order->setBasket($basket);
+        $order->setOrderDate($time -> format('Y-m-d H:i'));
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($order);
+        $entityManager->flush();
 
         return $this->redirectToRoute('basket_index');
     }

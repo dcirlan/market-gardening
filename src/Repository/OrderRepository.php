@@ -36,6 +36,17 @@ class OrderRepository extends ServiceEntityRepository
     }
     */
 
+    public function findOrdersByBasketId($id)
+    {
+        return $this->createQueryBuilder('basket')
+            ->select('user.firstname, user.secondname, user.email, basket.quantity, basket.order_date')
+            ->andWhere('basket.id = $id')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
     /*
     public function findOneBySomeField($value): ?Order
     {
