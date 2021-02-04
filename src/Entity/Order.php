@@ -19,7 +19,7 @@ class Order
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="string")
      */
     private $order_date;
 
@@ -45,12 +45,12 @@ class Order
         return $this->id;
     }
 
-    public function getOrderDate(): ?\DateTimeInterface
+    public function getOrderDate(): ?string
     {
         return $this->order_date;
     }
 
-    public function setOrderDate(\DateTimeInterface $order_date): self
+    public function setOrderDate(string $order_date): self
     {
         $this->order_date = $order_date;
 

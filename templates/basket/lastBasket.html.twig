@@ -5,4 +5,8 @@
 {% block body %}
 {{ basket.stock }}
 {{ basket.description }}
+
+{% if app.user %}
+        <a class="button" href="{{ path('basket_reserve', {'id': basket.id}) }}">Réserver</a>
+{% endif %}
 {% endblock %}
