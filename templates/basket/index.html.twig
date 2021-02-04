@@ -8,25 +8,25 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Creation_date</th>
-                <th>Pickup_date</th>
+                {# <th>Id</th>
+                <th>Creation_date</th> #}
+                <th>Date de distribution</th>
                 <th>Stock</th>
-                <th>Description</th>
-                <th>actions</th>
+                {# <th>Description</th> #}
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for basket in baskets %}
             <tr>
-                <td>{{ basket.id }}</td>
-                <td>{{ basket.creationDate ? basket.creationDate|date('Y-m-d H:i:s') : '' }}</td>
+                {# <td>{{ basket.id }}</td>
+                <td>{{ basket.creationDate ? basket.creationDate|date('Y-m-d H:i:s') : '' }}</td> #}
                 <td>{{ basket.pickupDate ? basket.pickupDate|date('Y-m-d') : '' }}</td>
                 <td>{{ basket.stock }}</td>
-                <td>{{ basket.description }}</td>
+                {# <td>{{ basket.description }}</td> #}
                 <td>
-                    <a href="{{ path('basket_show', {'id': basket.id}) }}">show</a>
-                    <a href="{{ path('basket_edit', {'id': basket.id}) }}">edit</a>
+                    <a href="{{ path('basket_show', {'id': basket.id}) }}">Détail du panier</a>
+                    {# <a href="{{ path('basket_edit', {'id': basket.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}
@@ -37,5 +37,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('basket_new') }}">Create new</a>
+    <a href="{{ path('basket_new') }}">Créer un nouveau panier</a>
 {% endblock %}

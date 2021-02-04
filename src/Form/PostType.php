@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Post;
+use Doctrine\DBAL\Types\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -13,8 +14,12 @@ class PostType extends AbstractType
     {
         $builder
             ->add('date')
-            ->add('title')
-            ->add('description')
+            ->add('title', TextType::class, [
+                'label' => 'Titre'
+            ])
+            ->add('description', TextType::class, [
+                'label' => 'Description'
+            ])
         ;
     }
 

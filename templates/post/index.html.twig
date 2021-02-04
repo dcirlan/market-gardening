@@ -3,7 +3,7 @@
 {% block title %}Market Garden{% endblock %}
 
 {% block body %}
-    <h1>Bienvenue sur Market Garden</h1>
+    <h1>Bienvenue Chez Georges</h1>
 
     <table class="table">
         <thead>
@@ -21,9 +21,9 @@
                 <td>{{ post.title }}</td>
                 <td>{{ post.description }}</td>
                 <td>
-                    <a href="{{ path('post_show', {'id': post.id}) }}">show</a>
+                    <a href="{{ path('post_show', {'id': post.id}) }}">Lire l'article</a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('post_edit', {'id': post.id}) }}">edit</a>
+                        <a href="{{ path('post_edit', {'id': post.id}) }}">Éditer</a>
                     {% endif %}
                 </td>
             </tr>
